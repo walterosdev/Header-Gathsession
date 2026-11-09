@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+    --color-bg-primary: #2B2D38;
+    --color-bg-secondary: #3D3F4B;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #9597A1;
+    --color-text-rose: #DB2A6B;
+
+    --font-poppins: "Poppins", sans-serif;
+    --font-merriweather: "Merriweather", serif;
+}
+
+/* Enlace del nav con línea animada al hacer hover */
+@utility nav-link {
+    position: relative;
+    padding-bottom: 6px;
+    transition: color 300ms ease;
+
+    /* La línea */
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 4px;
+        border-radius: 9999px;
+        background-color: var(--color-text-rose);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 300ms ease;
+    }
+
+    &:hover {
+        color: var(--color-text-primary);
+    }
+
+    /* Al entrar crece de izquierda a derecha; al salir se encoge hacia la derecha */
+    &:hover::after,
+    &[aria-current="page"]::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+}
+
+/* Botón principal (rosa) */
+@utility button-primary {
+    width: 160px;
+    height: 45px;
+    align-items: center;
+    border-radius: 10px 10px 10px 0px;
+    background-color: var(--color-text-rose);
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: filter 300ms ease, transform 300ms ease;
+
+    &:hover {
+        filter: brightness(1.1);
+        transform: translateY(-2px);
+    }
+}
